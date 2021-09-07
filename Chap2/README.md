@@ -125,5 +125,41 @@ goroutine is the function runs parallel with main and use key word `go` to start
 
 *closure in goroutine*
 
-Go support closer but only use the value that won't change in goroutine. However, when use the value in iteration then
-pass them as function argument.
+goroutine anonymous function have 2 ways to access the variable:
+
+1. closure it's suitable for the value not change.
+2. arguments in function it's suitable for the value keep changing.
+
+*struct tag*
+
+In struct the tag describe JSON encoding metadata it maps the field of struct to json field.
+
+```
+type Feed struct {
+   Name string `json:"site"`
+   URI string `json:"link"`
+   Type string `json:"type"`
+}
+```
+
+*defer*
+
+The function behind `defer` will always be executed after function return even when exception occurs.
+
+*`interface{}`*
+
+`interface{}` is a special type used with reflect package.
+
+*interface*
+
+interface defines an action that struct or named type needs to implement.
+
+By convention if an interface has only one method and that interface's name should end with er.
+
+*empty struct*
+
+An empty struct consumes zero space.
+
+```
+type defaultMatcher struct{}
+```
