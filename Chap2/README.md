@@ -67,3 +67,63 @@ error. Error is the exception to the function, but more graceful, it makes excep
 lesser code to handle exception.
 
 Use `:=` to declare and assign has no difference with keyword `var`
+
+*`var` and `:=``
+
+- When to initialise zero value variable use `var`.
+- When to initialise non-zero value or use function returns to initialise use `:=`
+
+*Reference type*
+
+1. `channel`
+2. `map`
+3. `slice`
+
+*Program termination point*
+
+When return from `main()`, the whole program terminates and in the same time end all goroutine.
+
+*`sync.WaitGroup`*
+
+Suggest use `WaitGroup` to track if goroutine complete the job.
+
+1. Initialise and set `WaitGroup` to the quantity of goroutine.
+
+```
+var waitGroup sync.WaitGroup
+waitGroup.Add(len(feeds))
+```
+
+2. When goroutine finish task decrease `WaitGroup` counter.
+3. When `WaitGroup` counter reaches 0 meaning all goroutine exits.
+
+*Key word `range`*
+
+`range` can be used to iterate:
+
+1. Array.
+2. String.
+3. Slice.
+4. Map.
+5. Channel.
+
+*`_` in `:=`*
+
+It's actually a placeholder, to ignore the that value.
+
+*map returns*
+
+map returns one value or two values. The differences are:
+
+1. If returns one value it's the search value.
+2. If returns two values first one is the search value, second is to bool value to indicate if that key exists in the
+   map.
+
+*goroutine*
+
+goroutine is the function runs parallel with main and use key word `go` to start it.
+
+*closure in goroutine*
+
+Go support closer but only use the value that won't change in goroutine. However, when use the value in iteration then
+pass them as function argument.
