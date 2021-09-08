@@ -163,3 +163,37 @@ An empty struct consumes zero space.
 ```
 type defaultMatcher struct{}
 ```
+
+*method receiver*
+
+When declare a receiver for a method, it means that method has been bind with that type.
+
+The receiver could be a value or a pointer to type.
+
+That type's pointer or value can be used to call method.
+
+When needs to mutate the value of the struct set method receiver to pointer.
+
+When using pointer receiver to implements an interface, the interface variable must be a pointer so that interface
+variable can call interface method.
+
+When using value receiver to implements an interface, the interface variable can be either pointer or value to call
+interface method.
+
+The interface type can receive either value or pointer.
+
+*for range channel*
+
+When channel is closed `for range channel` will exit.
+
+```
+// Display 从每个单独的goroutine 接收到结果后
+// 在终端窗口输出
+func Display(results chan *Result) {
+   // 通道会一直被阻塞，直到有结果写入
+   // 一旦通道被关闭，for 循环就会终止
+   for result := range results {
+   fmt.Printf("%s:\n%s\n\n", result.Field, result.Content)
+      }
+}
+```
