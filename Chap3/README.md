@@ -97,3 +97,11 @@ godoc -http=:6060
 2. Make package small.
 3. Use `go fmt` to format code.
 4. Write more comment.
+
+*What is the purpose of go mod vendor?*
+
+go `imports` neither care dependency version nor dependency is existed.
+
+`mod` takes care of version information.
+
+`vendor` download dependency so when build the program we won't worry that dependency doesn't exist.
