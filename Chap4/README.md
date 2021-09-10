@@ -113,3 +113,68 @@ var array3[2] = array1[1]
 
 var value int = array1[1][0]
 ```
+
+*Pass array between function*
+
+When pass array by value it will consume much more space, because by default the value is passed by copy, therefore
+recommend passing array by pointer (the pointer is consuming less space)
+
+```
+// Not recommend
+
+var array [1e6]int
+
+foo(array)
+func foo(array [1e6int]){
+...
+}
+
+// Recommend
+
+var array [1e6]int
+
+foo(&array)
+
+func foo(array *[1e6]int){
+...
+}
+```
+
+*Slice*
+
+Slice is another type of data structure. It's basically a dynamic array, and it will increase or decrease automatically
+base on need.
+
+The slice has:
+
+1. Pointer to underlying array.
+2. The length of slice.
+3. The capacity of slice.
+
+*Create a slice*
+
+1. Using `make`, when use it, needs to pass an argument to indicate the slice length
+
+```
+// The length and capacity are the same
+slice := make([]string,5)
+// The length and capacity are different
+slice := make([]int,3,5)
+``` 
+
+When specify length and capacity respectively, after initialisation could not access all capacity element.
+
+*Use literal value to init a slice*
+
+In the below snippet the length and capacity of a slice will be determined by the actual value.
+
+```
+slice := []string{"Red", "Blue", "Green", "Yellow", "Pink"}
+```
+
+If you need to specify the length of slice recommend use index. In below snippet the slice's length and capacity are
+both 100.
+
+```
+slice := []string{99:""}
+```
