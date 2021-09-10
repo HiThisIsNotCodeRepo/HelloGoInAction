@@ -178,3 +178,86 @@ both 100.
 ```
 slice := []string{99:""}
 ```
+
+*nil slice*
+
+Use below syntax to create `nil` slice.
+
+```
+var slice []int
+```
+
+In a `nil` slice the len and cap are both 0. When a function expected to return a slice and a panic occur it will return
+a `nil` slice.
+
+*Empty slice*
+
+Use below syntax to create an empty slice
+
+```
+slice := make([]int, 0)
+slice := []int{}
+```
+
+For example when a database return 0 enquiry result can use empty slice.
+
+*Use slice*
+
+By index.
+
+```
+slice := []int{10,20,30,40,50}
+slice[1]=25
+```
+
+Create a slice from a slice
+
+```
+slice := []int{10,20,30,40,50}
+newSlice := slice[1:3]
+```
+
+Both `slice` and `newSlice` share the same underlying array, like below example:
+
+```
+	slice := []int{10, 20, 30, 40, 50}
+	newSlice := slice[1:3]
+	newSlice[0] = 25
+	fmt.Printf("slice:%v\n", slice)
+	fmt.Printf("newSlice:%v\n", newSlice)
+	/*
+	slice:[10 25 30 40 50]
+	newSlice:[25 30]
+	*/
+```
+
+*Calculate length and cap of a slice*
+
+If the length of underlying array is k , a `slice[i:j]`:
+
+- Length: `j-i`
+- Cap: `k-i`
+
+*Use `append` to increase slice*
+
+Compare with array ,slice's length is dynamic, use `append` can increase its length, it depends on the actual length of
+the slice. Also, it will change the underlying array, any other slice share the same underlying array will see the
+effect.
+
+```
+	slice := []int{10, 20, 30, 40, 50}
+	newSlice := slice[1:3]
+	newSlice = append(newSlice, 60)
+	fmt.Printf("slice:%v\n", slice)
+	fmt.Printf("newSlice:%v\n", newSlice)
+	/*
+	slice:[10 20 30 60 50]
+	newSlice:[20 30 60]
+	*/
+```
+
+If the slice's underlying array's length is not sufficient the `append` will increase its length by creating a new array
+and then append new value.
+
+When slice's capacity is below 1000 every time when `append` apply will multiply its capacity by 2. Once capacity is
+above 1000 it will be multiplied by 1.25.
