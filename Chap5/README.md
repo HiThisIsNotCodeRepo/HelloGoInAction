@@ -18,6 +18,8 @@ type user struct{
 var bill user
 ```
 
+`struct` is a value type.
+
 *`var`*
 
 By convention, using `var` to init a variable to zero value.
@@ -85,3 +87,17 @@ implicit conversion happens, actually.
 Value receiver use the copy of value to call method, mutation to the value won't update.
 
 Pointer receiver use the actual value to call method, mutation to the value will update.
+
+*Primitive type*
+
+Primitive type is passed by value.
+
+1. Number
+2. String
+3. Bool
+
+*Reference type*
+
+When create a reference type variable , that variable is called header. The header is copied when pass in function and
+methods and the underlying data is shared.
+
