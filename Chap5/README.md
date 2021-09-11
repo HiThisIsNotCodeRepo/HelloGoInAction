@@ -101,3 +101,11 @@ Primitive type is passed by value.
 When create a reference type variable , that variable is called header. The header is copied when pass in function and
 methods and the underlying data is shared.
 
+*Interface*
+
+Interface define action , the action is implemented by type.
+
+*Interface value constraint*
+
+If interface implementation is pointer receiver then interface value must be pointer type, here no implicit conversion.
+For value receiver , interface value could be both value and pointer type.
