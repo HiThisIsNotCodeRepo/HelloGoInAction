@@ -116,3 +116,10 @@ When declare an embedding type only type without field name, and outer type will
 method just like they are defined for outer type.
 
 If outer type implements interface for its own type, then will overwrite embedding type's implementation.
+
+*Identifier access control*
+
+Identifier starts with uppercase letter can be accessed by outside package, if starts with lowercase then means its
+private in its own package.
+
+
