@@ -109,3 +109,10 @@ Interface define action , the action is implemented by type.
 
 If interface implementation is pointer receiver then interface value must be pointer type, here no implicit conversion.
 For value receiver , interface value could be both value and pointer type.
+
+*Embedding type*
+
+When declare an embedding type only type without field name, and outer type will inherit all embedding type's field and
+method just like they are defined for outer type.
+
+If outer type implements interface for its own type, then will overwrite embedding type's implementation.
