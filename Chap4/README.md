@@ -261,3 +261,76 @@ and then append new value.
 
 When slice's capacity is below 1000 every time when `append` apply will multiply its capacity by 2. Once capacity is
 above 1000 it will be multiplied by 1.25.
+
+*Slice with 3 indexes*
+
+`slice[i:j:k]` the length will be `j-i` capacity will be `k-i`. `k` isn't allowed to be larger than underlying array max
+index.
+
+With 3 indexes we can create a slice that length and capacity are equal. Therefore, when do `append` because it exceeds
+the underlying slice capacity a new array will be generated. So the new value won't change the original slice.
+
+```
+	source := []string{"Apple", "Orange", "Plum", "Banana", "Grape"}
+	slice := source[2:3:3]
+	slice = append(slice, "KiWi")
+	fmt.Printf("source:%v\n", source)
+	fmt.Printf("slice:%v\n", slice)
+	/*
+	source:[Apple Orange Plum Banana Grape]
+	slice:[Plum KiWi]
+	*/
+
+```
+
+*Using `...` in `append`*
+
+By using `...` in `append` we can add two slices together.
+
+```
+	s1 := []int{1, 2}
+	s2 := []int{3, 4}
+	fmt.Printf("%v\n", append(s1, s2...))
+	// [1 2 3 4]
+```
+
+*Iterate slice*
+
+Using `for range` to iterate a slice.
+
+```
+	slice := []int{10, 20, 30, 40}
+	for index, value := range slice {
+		fmt.Printf("Index: %d Value: %d\n", index, value)
+	}
+	/*
+	Index: 0 Value: 10
+	Index: 1 Value: 20
+	Index: 2 Value: 30
+	Index: 3 Value: 40
+	*/
+```
+
+`range` will return the index and copy value of the slice element at that index. Every iteration will assign the value
+of the slice to that copy value.
+
+```
+	slice := []int{10, 20, 30, 40}
+	for index, value := range slice {
+		fmt.Printf("Value: %d Value-Addr: %X ElemAddr: %X\n", value, &value, &slice[index])
+	}
+	/*
+	Value: 10 Value-Addr: C000016178 ElemAddr: C00000E2A0
+	Value: 20 Value-Addr: C000016178 ElemAddr: C00000E2A8
+	Value: 30 Value-Addr: C000016178 ElemAddr: C00000E2B0
+	Value: 40 Value-Addr: C000016178 ElemAddr: C00000E2B8
+	*/
+```
+
+*Build in `len` and `cap`*
+
+Both `len` and `cap` can be used on:
+
+1. Array.
+2. Slice.
+3. Channel.
