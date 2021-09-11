@@ -59,3 +59,29 @@ Instead of using a struct to create a type, we also can use build in type to cre
 ```
 type Duration int64
 ```
+
+*Method*
+
+Method is a function that belongs a type. It has 2 kinds of receiver:
+
+1. Value receiver.
+2. Pointer receiver.
+
+The type variable no matter is value or pointer can call method with value receiver and pointer receiver. There is
+implicit conversion happens, actually.
+
+```
+// lisa is pointer type and the notify's receiver is value type
+// conversion
+(*lisa).notify()
+
+// bill is value type and the changeEmail's receiver is pointer type
+// conversion
+(&bill).changeEmail("bill@newdomain.com")
+```
+
+*Value receiver vs Pointer receiver*
+
+Value receiver use the copy of value to call method, mutation to the value won't update.
+
+Pointer receiver use the actual value to call method, mutation to the value will update.
