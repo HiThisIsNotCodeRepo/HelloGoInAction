@@ -334,3 +334,117 @@ Both `len` and `cap` can be used on:
 1. Array.
 2. Slice.
 3. Channel.
+
+*Multi dimensional slice*
+
+```
+slice := [][]int{{10},{100,200}}
+```
+
+*Passing slice between function*
+
+On 64bit arch machine , one slice takes up 24 bytes , 8 bytes for pointer, len and cap are 8 bytes respectively.
+
+*Size comparison between array and slice*
+
+```
+	intArr := [4]int{10, 20, 30, 40}
+	intSlice := []int{10, 20, 30, 40}
+	strArr := [3]string{"a", "b", "c"}
+	strSlice := []string{"a", "b", "c"}
+	fmt.Printf("intArr size:%v\n", unsafe.Sizeof(intArr))
+	fmt.Printf("intSlice size:%v\n", unsafe.Sizeof(intSlice))
+	fmt.Printf("strArr size:%v\n", unsafe.Sizeof(strArr))
+	fmt.Printf("strSlice size:%v\n", unsafe.Sizeof(strSlice))
+	/*
+	intArr size:32
+	intSlice size:24
+	strArr size:48
+	strSlice size:24
+	*/
+```
+
+*Map*
+
+Map is a data structure , it can be used to store a series of unordered key value pair.
+
+*How map implement?*
+
+Use hash function to generate hash value of the key. Use the lower bit of that hash value to locate the bucket, inside
+the bucket there're two arrays. One array is used to store higher bit of hash value it used to confirm that key/value
+exist in the bucket. The second array is to store key and value.
+
+*Map initialisation*
+
+```
+dict := make(map[string]int)
+dict := map[string]string{"Red":"#da1337","Orange":"#e95a22"}
+```
+
+*Key of map*
+The key could be built in type or struct. Slice, function and struct include slice can not.
+
+```
+	// ok
+	_ = map[[]string]int{}
+	// error
+	_ = map[int][]string{}
+```
+
+*Assign map*
+
+```
+colors := map[string]string{}
+colors["Red"] = "#da1337"
+```
+
+*nil map*
+
+When assign a value to nil map, an error will occur.
+
+```
+	var colors map[string]string
+	colors["Red"] = "#da1337"
+	//panic: assignment to entry in nil map
+```
+
+*Retrieve value from map*
+
+```
+value, exists := colors["Blue]
+if exists {
+    fmt.Println(value)
+}
+```
+
+```
+value := colors["Blue"]
+if value != ""{
+    fmt.Println(value)
+}
+```
+
+*Iterate map*
+
+```
+	colors := map[string]string{
+		"AliceBlue":   "#f0f8ff",
+		"Coral":       "#ff7F50",
+		"DarkGray":    "#a9a9a9",
+		"ForestGreen": "#228b22",
+	}
+
+	for key, value := range colors {
+		fmt.Printf("Key: %s Value: %s\n", key, value)
+	}
+```
+
+*Delete key value from map*
+
+```
+delete(colors,"Coral")
+```
+
+*Passing map between function*
+Because map is reference type when pass map between function any modification to the map will be updated to all reference to this map.
+
