@@ -29,3 +29,18 @@ There are couple ways to prevent race condition.
 
 1. Lock resource, `atomic.AddInt64`,`atomic.LoadInt64`,`atomic.StoreInt64`.
 2. Mutex, `mutex.Lock()`, `mutex.Unlock()`.
+
+*Channel*
+
+Channel is another way to sync between goroutine.
+
+```
+unbuffered := make(chan int)
+buffered := make(chan string, 10)
+```
+
+Unbuffered channel won't store any value, send in will block until value inside channel is retrieved. The retrieval will
+block until a new value is sent in.
+
+In buffered channel, send in will block until reach buffer limit.The retrieval will block until no value exist in the
+channel.
