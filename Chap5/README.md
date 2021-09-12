@@ -122,4 +122,7 @@ If outer type implements interface for its own type, then will overwrite embeddi
 Identifier starts with uppercase letter can be accessed by outside package, if starts with lowercase then means its
 private in its own package.
 
+*Embedding type with lowercase type name and uppercase field*
 
+In that case, the embedding type can't be accessed but because outer type inherit embedding type's field and method so by
+using `outer.embedField` we can init embedding type field.
