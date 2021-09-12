@@ -12,3 +12,20 @@ processor that run application.
 Parallelism is to run different snippet on different processor, parallelism needs multicore.
 
 Concurrency is to do a lot of things at the same time, concurrency can happen on single core.
+
+*Configure logic core*
+
+```
+runtime.GOMAXPROCS(runtime.NumCPU())
+```
+
+*Race condition*
+
+If more than one goroutine read/write shared resource that will cause race condition. It should be avoided.
+
+*Race condition solution*
+
+There are couple ways to prevent race condition.
+
+1. Lock resource, `atomic.AddInt64`,`atomic.LoadInt64`,`atomic.StoreInt64`.
+2. Mutex, `mutex.Lock()`, `mutex.Unlock()`.
