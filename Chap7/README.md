@@ -15,3 +15,7 @@
 *`select` and `default`*
 
 In `default` branch we can put non-blocking code to exit from `select`.
+
+*Why `make(chan os.Signal, 1)`?*
+
+The buffer channel is to ensure the program cache the first interrupt signal.
