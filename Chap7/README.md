@@ -20,7 +20,7 @@ In `default` branch we can put non-blocking code to exit from `select`.
 
 The buffer channel is to ensure the program cache the first interrupt signal.
 
-*How pool work?*
+*Package `pool`*
 
 Every time when request resource from pool, it will check if it has available cached resource. If not then create new
 resource.
@@ -28,3 +28,6 @@ resource.
 When release resource, it won't release immediately, the pool will check if its cache got vacancy if so the cache that
 resource otherwise release it.
 
+*Package `work`*
+
+In `work` a set of goroutine will run tasks concurrently, this is achieved by unbuffered channel.
