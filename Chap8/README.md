@@ -51,3 +51,12 @@ func init() {
 }
 ```
 
+*Usage of tag in `struct` when used in json decoding*
+
+It provides the metadata of every field, map json to struct field.
+
+*The types json can be decoded*
+
+1. Struct.
+2. Map `map[string]interface{}`
+
