@@ -60,3 +60,16 @@ It provides the metadata of every field, map json to struct field.
 1. Struct.
 2. Map `map[string]interface{}`
 
+*Marshal json string*
+
+```
+	c := make(map[string]interface{})
+	c["name"] = "Gopher"
+	c["title"] = "programmer"
+	c["contact"] = map[string]interface{}{
+		"home": "415.333.3333",
+		"cell": "415.555.5555",
+	}
+
+	data, err := json.MarshalIndent(c, "", " ")
+```
