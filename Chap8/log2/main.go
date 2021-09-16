@@ -1,33 +1,12 @@
-# Chap8
+package main
 
-*go std lib*
+import (
+	"io"
+	"io/ioutil"
+	"log"
+	"os"
+)
 
-[Standard library](https://pkg.go.dev/std)
-
-*$GOROOT/src*
-
-Source code.
-
-*$GOROOT/pkg*
-
-Pre compiled file used to build program.
-
-*log is thread safe*
-
-*Log configuration method 1*
-
-Use `log` method.
-
-```
-	log.SetPrefix("TRACE: ")
-	log.SetFlags(log.Ldate | log.Lmicroseconds | log.Llongfile)
-```
-
-*Log configuration method 2*
-
-Use `*log.Logger` value.
-
-```
 var (
 	Trace   *log.Logger
 	Info    *log.Logger
@@ -49,5 +28,10 @@ func init() {
 
 	Error = log.New(io.MultiWriter(file, os.Stderr), "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile)
 }
-```
 
+func main() {
+	Trace.Println("I have something standard to say")
+	Info.Println("Special Information")
+	Warning.Println("There is something you need to know about")
+	Error.Println("Something has failed")
+}
