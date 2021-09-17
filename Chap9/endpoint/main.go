@@ -1,4 +1,3 @@
-// 这个示例程序实现了简单的网络服务
 package main
 
 import (
@@ -7,7 +6,6 @@ import (
 	"net/http"
 )
 
-// main 是应用程序的入口
 func main() {
 	handlers.Routes()
 
