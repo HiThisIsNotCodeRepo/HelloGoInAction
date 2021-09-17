@@ -10,4 +10,7 @@
 
 When test doesn't call `t.Fatal` or `t.Error`
 
+*Purpose of mock test*
 
+It's not good for your test depends on external resource, because external resource is not guaranteed and without it
+your can't run your test as your test will fail definitely. 
